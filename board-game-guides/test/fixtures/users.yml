@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 
+  rank: 
+  role: 
+  score: 1
+
+two:
+  name: 
+  rank: 
+  role: 
+  score: 1
