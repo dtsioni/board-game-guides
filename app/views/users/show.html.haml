@@ -1,0 +1,38 @@
+%table{class:"list", id:"show_user"}
+	%thead
+		%tr
+	%tbody
+		%tr
+			%td
+				User Score:
+			%td
+				=@user.score
+		%tr
+			%td
+				User Role:
+			%td
+				=@user.role.humanize
+		%tr
+			%td
+				User Rank:
+			%td
+				-var = @user.score
+				-#user ranks
+				-case var
+				-when 0
+					Noob
+				-when 1...10
+					Slightly Less of a Noob
+				-else
+					Banned
+				
+					
+
+
+
+
+
+
+
+
+	

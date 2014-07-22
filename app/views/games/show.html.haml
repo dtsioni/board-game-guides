@@ -1,0 +1,30 @@
+
+%table{class:"list", id:"show_game"}
+	%thead
+		%tr
+			%th Game Name
+			%th Game Description
+	%tbody
+		%tr
+			%td 
+				=@game.name
+			%td 
+				=@game.description
+%table{class:"list", id:"game_links"}
+	%thead
+		%tr
+			%th
+				=link_to "Requests", game_requests_path(@game)
+			%th
+				=link_to "Guides", game_guides_path(@game)
+			%th
+				=link_to "Resources", game_resources_path(@game)
+		%tr
+			%td				
+				=link_to "New Request", new_game_request_path(@game.id)
+			%td				
+				=link_to "New Guide", new_game_guide_path(@game.id)
+			%td				
+				=link_to "New Resource", new_game_resource_path(@game.id)
+				
+

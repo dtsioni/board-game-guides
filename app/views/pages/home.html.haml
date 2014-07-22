@@ -1,0 +1,21 @@
+
+
+%h1 HOME
+%div{class:"list", id:"index_game"}
+	%table
+		%thead
+			%tr
+				%th Game Name
+				%th Game Description
+				%th{colspan:"3"}
+			%tbody
+			-Game.all.each do |game|
+				%tr
+				%td
+					=link_to game.name, game
+				%td
+					=game.description
+
+
+	
+		

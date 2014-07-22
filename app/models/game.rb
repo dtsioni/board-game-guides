@@ -1,8 +1,8 @@
 class Game < ActiveRecord::Base
-	has_many Requests
-	has_many Guides
-	has_many Resources
-	has_many Requests
-	belongs_to User
+	has_many :requests
+	has_many :guides
+	has_many :resources
+	has_many :requests
+	belongs_to :user
 	
 end

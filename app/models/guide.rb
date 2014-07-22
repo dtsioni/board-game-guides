@@ -1,5 +1,5 @@
 class Guide < ActiveRecord::Base
-	has_many Comments
-	belongs_to User
-	belongs_to Game
+	has_many :comments
+	belongs_to :user
+	belongs_to :game
 end

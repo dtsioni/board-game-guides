@@ -1,6 +1,6 @@
 class Request < ActiveRecord::Base
-	belongs_to Game
-	belongs_to User
-	has_many Comments
+	belongs_to :game
+	belongs_to :user
+	has_many :comments
 	
 end

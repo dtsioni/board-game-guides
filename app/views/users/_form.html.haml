@@ -1,0 +1,33 @@
+= form_for(@user) do |f|
+    = f.label :name
+    = f.text_field :name
+
+    %br
+
+    = f.label :email
+    = f.text_field :email
+
+    %br
+
+    = f.label :password
+    = f.password_field :password
+
+    %br
+
+    = f.label :password_confirmation, "Confirmation"
+    = f.password_field :password_confirmation
+
+    %br
+
+    = f.label :role, "Role"
+    = f.collection_select :role, User::ROLES, :to_s, :humanize
+
+    = f.submit "Create my account"
+
+
+
+
+
+
+
+    

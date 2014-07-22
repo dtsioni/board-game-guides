@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718195619) do
+ActiveRecord::Schema.define(version: 20140720121300) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 20140718195619) do
     t.string   "title"
     t.string   "body"
     t.integer  "score"
+    t.integer  "resource_id"
+    t.integer  "post_id"
+    t.integer  "guide_id"
+    t.integer  "user_id"
+    t.integer  "request_id"
   end
 
   create_table "games", force: true do |t|
@@ -26,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140718195619) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "description"
+    t.integer  "user_id"
   end
 
   create_table "guides", force: true do |t|
@@ -34,6 +40,8 @@ ActiveRecord::Schema.define(version: 20140718195619) do
     t.string   "name"
     t.string   "type"
     t.integer  "score"
+    t.integer  "user_id"
+    t.integer  "game_id"
   end
 
   create_table "posts", force: true do |t|
@@ -42,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140718195619) do
     t.string   "title"
     t.string   "body"
     t.integer  "score"
+    t.integer  "user_id"
   end
 
   create_table "requests", force: true do |t|
@@ -51,6 +60,8 @@ ActiveRecord::Schema.define(version: 20140718195619) do
     t.string   "body"
     t.boolean  "answered"
     t.integer  "score"
+    t.integer  "user_id"
+    t.integer  "game_id"
   end
 
   create_table "resources", force: true do |t|
@@ -60,6 +71,13 @@ ActiveRecord::Schema.define(version: 20140718195619) do
     t.string   "link"
     t.string   "type"
     t.integer  "score"
+    t.integer  "game_id"
+    t.integer  "user_id"
+  end
+
+  create_table "sessions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
@@ -69,6 +87,11 @@ ActiveRecord::Schema.define(version: 20140718195619) do
     t.string   "rank"
     t.string   "role"
     t.integer  "score"
+    t.string   "email"
+    t.string   "remember_token"
+    t.string   "password_digest"
   end
+
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end
