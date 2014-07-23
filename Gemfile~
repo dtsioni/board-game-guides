@@ -18,3 +18,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'haml-rails'
 gem 'cancan'
 gem 'bcrypt'
+gem 'acts_as_votable', '~> 0.10.0'

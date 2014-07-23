@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140720121300) do
+ActiveRecord::Schema.define(version: 20140723155621) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140720121300) do
     t.integer  "score"
     t.integer  "user_id"
     t.integer  "game_id"
+    t.string   "status"
   end
 
   create_table "resources", force: true do |t|
@@ -93,5 +94,16 @@ ActiveRecord::Schema.define(version: 20140720121300) do
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "votes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "count"
+    t.boolean  "up"
+    t.integer  "user_id"
+    t.integer  "request_id"
+    t.integer  "guide_id"
+    t.string   "vote_type"
+  end
 
 end

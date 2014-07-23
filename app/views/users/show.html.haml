@@ -25,7 +25,28 @@
 					Slightly Less of a Noob
 				-else
 					Banned
-				
+%h2 Requests	
+%table{class:"list", id:"show_user_requests"}
+	%thead
+		%tr			
+			%td
+				%strong
+					Score		
+			%td
+				%strong
+					Title		
+			%td
+				%strong
+					Body				
+	%tbody		
+		-@user.requests.each do |request|
+			%tr
+				%td
+					=request.score
+				%td					
+					=link_to request.title, request
+				%td
+					=request.body
 					
 
 

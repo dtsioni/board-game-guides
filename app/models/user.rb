@@ -3,6 +3,12 @@ class User < ActiveRecord::Base
 	has_many :guides
 	has_many :comments
 	has_many :posts
+	has_many :votes
+
+	has_many :games, through: :requests
+
+	
+
 
 	ROLES = %w[admin moderator author banned]
 

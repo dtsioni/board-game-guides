@@ -1,0 +1,13 @@
+= form_for(@vote) do |f|
+  %h1
+    Voting On:
+    -#=@vote.request.name
+  =f.label :upvote
+  =f.radio_button :vote_type, "up", :checked => true
+  %br
+  =f.label :downvote
+  =f.radio_button :vote_type, "down"
+  %br
+  =f.label :request_id
+  =f.select :request_id, options_for_select(@requests.map {|r| [r.title, r.id]})
+  =f.submit "Vote"

@@ -4,35 +4,34 @@ class RequestsController < ApplicationController
 	before_action :set_game, only: [:edit, :update, :destroy]
 	#authorize_resource
 
-
 	def index
-		@requests = Request.all
-		@game = Game.find(params[:game_id])
+		@requests = Request.all		
 	end
 
 	def show
 		@request = Request.find(params[:id])
+		@game = Game.find(@request.game_id)
 	end
 
 	def new
-		@request = Request.new	
-		@game = Game.find(params[:game_id])	
+		@request = Request.new			
+		@request.answered = false
+		@game = Game.select('id, name')
 	end
 
 	def edit
 	end
 
-
-
-	def create
-		@game = Game.find(params[:game_id])
-		@request = @game.requests.new(request_params)		
-		#@request.update_attribute(:game_id, @game.id)
-		#@game.requests.new(request_params)
+	def create		
+		@request = Request.new(request_params)
+		current_user.requests.new(request_params)	
+		@request.user_id = current_user.id
+		@request.status = "Not being worked on"
+		@request.score = 0		
 		
 		respond_to do |format|
 			if @request.save				
-				format.html{redirect_to game_request_path(@game, @request), notice: 'Request was successfully created.'}
+				format.html{redirect_to @request, notice: 'Request was successfully created.'}
 			else
 				flash[:error] = "Request not created."
 				format.html{render :new}
@@ -48,32 +47,26 @@ class RequestsController < ApplicationController
 				format.html{render :edit}
 			end
 		end
-	end
-
-	
-
-	
+	end	
 
 	def destroy
 		@request.destroy
 		respond_to do |format|
-			format.html {redirect_to home_path, notice: "Request was succesfully removed."}
+			format.html {redirect_to root_path, notice: "Request was succesfully removed."}
 		end
 	end
 
-
 	private
 		def set_request
-			@game = Game.find(params[:game_id])			
-			@request = @game.requests.find(params[:id])
+			@request = Request.find(params[:id])
 		end
 
 		def set_game
-			@game = Game.find(params[:game_id])
+			@game = @request.game
 		end
 
 		def request_params
-			params.require(:request).permit(:title, :body)
+			params.require(:request).permit(:title, :body, :game_id)
 		end
 end
 

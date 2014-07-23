@@ -1,0 +1,54 @@
+
+
+%h2
+  Requests:
+%table{class:"list", id:"index_requests"}
+  %thead
+    %tr
+      -if can? :delete, request
+        %td
+          %strong
+            Delete:
+      -if can? :vote, request
+        %td
+          %strong
+            Vote:      
+      %td
+        %strong
+          Score:
+      %td
+        %strong
+          Status:
+      %td
+        %strong
+          Title:
+    %tr
+      %td
+        %br
+  -@requests.each do |request|
+    %tbody        
+      %tr
+        -if can? :delete, request        
+          %td
+            =link_to "Delete", request, method: :delete, data: {confirm: "Are you sure?"}
+        -if can? :vote, request
+          %td
+            = link_to "Vote", new_vote_path
+        %td
+          = (request.count_votes("up") - request.count_votes("down"))
+
+        %td
+          =request.status
+        %td
+          =link_to request.title, request
+    %tbody      
+      %tr
+        %td
+          %br   
+
+%h6
+  =link_to "New Request", new_request_path
+      
+      
+
+      

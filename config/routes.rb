@@ -4,14 +4,18 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :games do
-    resources :requests
+  resources :games do    
     resources :guides
     resources :resources
   end
 
-  resources :users do
-    resources :requests
+  resources :votes
+
+  resources :requests
+  #resources :votes
+
+
+  resources :users do     
     resources :guides
     resources :comments
     resources :posts    
@@ -29,6 +33,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+
+
   
 
 
@@ -37,5 +43,7 @@ Rails.application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
+  get '/votes/new', to: 'votes#new'
+  get '/games/:id/requests', to: 'games#requests', as: 'game_requests'
 
 end

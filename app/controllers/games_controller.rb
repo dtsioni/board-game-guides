@@ -19,6 +19,12 @@ class GamesController < ApplicationController
 		end
 	end
 
+	def requests
+		@game = Game.find(params[:id])
+		@requests = @game.requests
+		@requests.sort_by{|a| a.score}
+	end	
+
 	def edit
 	end
 

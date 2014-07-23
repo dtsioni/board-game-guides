@@ -1,12 +1,11 @@
-= form_for(@request) do |f|
-	= f.label :title
-	= f.text_field :title
+= form_for (@request) do |f|
+  = f.label :title
+  = f.text_field :title
+  %br
 
-	%br
-
-	= f.label :body
-	= f.text_field :body
-
-	%br
-
-	= f.submit "Create Request"
+  = f.label :body
+  = f.text_field :body
+  %br
+  = f.label :game_id
+  = f.select :game_id, options_for_select(@game.map {|r| [r.name, r.id]})
+  = f.submit "Create Request"

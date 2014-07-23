@@ -1,1 +1,37 @@
-%h1 Show Request
+
+%p
+  Request for:
+  =link_to @game.name, @game
+%table
+  %thead
+    %tr
+      %td
+        Score:
+      %td
+        Title:
+         
+      %td
+        Status:
+      %td
+        Author:
+  %tbody
+    %tr
+      %td
+        =@request.count_votes("up") - @request.count_votes("down")
+      %td
+        =@request.title
+         
+      %td
+        =@request.status
+      %td
+        =link_to @request.user.name, @request.user
+  %tbody
+    %tr
+      %td
+        %br
+    %tr
+      %td
+        =@request.body
+-if can? :delete, @request
+  =link_to "Delete this request", request_path(request), method: :delete, data:{confirm:"Are you sure?"}
+  %br

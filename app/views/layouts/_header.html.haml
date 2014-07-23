@@ -2,8 +2,7 @@
 =render 'shared/error_messages'
 -flash.each do |name, msg|
 	=content_tag :div, msg, class: name
-/%p{:id => "notice"}
-/	=notice  
+
 -if signed_in? 
 	SIGNED IN AS:
 	=link_to current_user.name, current_user
