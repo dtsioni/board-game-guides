@@ -62,7 +62,7 @@ class RequestsController < ApplicationController
 		end
 
 		def set_game
-			@game = @request.game
+			@game = @request.game 	
 		end
 
 		def request_params

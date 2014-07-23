@@ -33,7 +33,7 @@
           =link_to request.user.name, request.user      
         %td
           -if can? :delete, request
-            =link_to "Delete this request", request_path(request), method: :delete, data:{confirm:"Are you sure?"}
+            =link_to "Delete this request", request, method: :delete, data:{confirm:"Are you sure?"}
             %br    
       %tr
         %td

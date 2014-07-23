@@ -8,8 +8,7 @@
       %td
         Score:
       %td
-        Title:
-         
+        Title:         
       %td
         Status:
       %td
@@ -33,5 +32,5 @@
       %td
         =@request.body
 -if can? :delete, @request
-  =link_to "Delete this request", request_path(request), method: :delete, data:{confirm:"Are you sure?"}
+  =link_to "Delete this request", @request, method: :delete, data:{confirm:"Are you sure?"}
   %br

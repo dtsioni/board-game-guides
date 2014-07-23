@@ -1,0 +1,62 @@
+
+
+%h2
+  Guides:
+%table{class:"list", id:"index_guides"}
+  %thead
+    %tr
+      -if can? :delete, :guide
+        %td
+          %strong
+            Delete:
+      -if can? :vote, :guide
+        %td
+          %strong
+            Vote:      
+      %td
+        %strong
+          Score:
+      %td
+        %strong
+          Type:
+      %td
+        %strong
+          Title:
+      %td
+        %strong
+          Body:
+      %td
+        %strong
+          Author
+    %tr
+      %td
+        %br
+  -@guides.each do |guide|
+    %tbody        
+      %tr
+        -if can? :delete, guide        
+          %td
+            =link_to "Delete", guide, method: :delete, data: {confirm: "Are you sure?"}
+        -if can? :vote, guide
+          %td
+            = link_to "Vote", new_vote_path
+        %td
+          = guide.score
+        %td
+          = guide.format.humanize
+        %td
+          =link_to guide.name, guide
+        %td
+          =guide.body
+        %td
+          =link_to guide.user.name, guide.user  
+          
+    %tbody      
+      %tr
+        %td
+          %br   
+
+      
+      
+
+      

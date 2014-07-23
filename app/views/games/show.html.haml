@@ -1,4 +1,9 @@
-
+-if can? :edit, @game
+	%br
+	=link_to "Edit Game", edit_game_path(@game)
+-if can? :destroy, @game	
+	%br
+	=link_to "Delete Game", @game, method: :delete, data:{confirm:"Are you sure? All guides, requests, and resources belonging to game will be destroyed."}
 %table{class:"list", id:"show_game"}
 	%thead
 		%tr

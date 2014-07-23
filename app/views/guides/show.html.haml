@@ -1,0 +1,37 @@
+
+%p
+  Guide for:
+  =link_to @guide.game.name, @guide.game
+%table
+  %thead
+    %tr
+      %td
+        Score:
+      %td
+        Type:         
+      %td
+        Name:
+      %td
+        Body:
+      %td
+        Link
+      %td
+        Author
+  %tbody
+    %tr
+      %td
+        =@guide.score
+      %td
+        =@guide.format.humanize         
+      %td
+        =@guide.name
+      %td
+        =@guide.body
+      %td
+        =@guide.link
+      %td
+        =link_to @guide.user.name, @guide.user
+  
+-if can? :delete, @guide
+  =link_to "Delete this guide", @guide, method: :delete, data:{confirm:"Are you sure?"}
+  %br

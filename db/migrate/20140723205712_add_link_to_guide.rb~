@@ -1,0 +1,4 @@
+class AddLinkToGuide < ActiveRecord::Migration
+  def change
+  end
+end

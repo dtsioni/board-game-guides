@@ -11,9 +11,10 @@ class GamesController < ApplicationController
 
 		respond_to do |format|
 			if @game.save
-				flash[:success] = "New Game Created"
-				format.html {redirect_to @game, notice: "Game was successfully created"}
+				flash[:success] = "Game was successfully created."
+				format.html {redirect_to @game}
 			else
+				flash[:error] = "There was an error. Game not created."
 				format.html {render :new}
 			end
 		end
@@ -26,16 +27,36 @@ class GamesController < ApplicationController
 	end	
 
 	def edit
+		@game = Game.find(params[:id])
 	end
 
 	def show
 	end
 
 	def update
+		respond_to do |format|
+			if @game.update(game_params)
+				flash[:success] = "Game successfully updated."
+				format.html{redirect_to @game}
+			else
+				flash[:error] = "Game not successfully updated."
+				format.html{render :edit}
+			end
+		end
 	end
 
 	def destroy
+		@game.guides.destroy
+		@game.resources.destroy
+		@game.requests.destroy
+
+		@game.destroy
+		respond_to do |format|
+			flash[:success] = "Game successfully destroyed."
+			format.html {redirect_to root_path}
+		end		
 	end
+	
 	private
 		def set_game
 			@game = Game.find(params[:id])

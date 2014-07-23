@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723155621) do
+ActiveRecord::Schema.define(version: 20140723205712) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -42,6 +42,9 @@ ActiveRecord::Schema.define(version: 20140723155621) do
     t.integer  "score"
     t.integer  "user_id"
     t.integer  "game_id"
+    t.string   "body"
+    t.string   "format"
+    t.string   "link"
   end
 
   create_table "posts", force: true do |t|

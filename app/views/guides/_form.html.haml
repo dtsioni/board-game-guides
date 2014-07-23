@@ -1,0 +1,21 @@
+= form_for([@game, @guide]) do |f|
+  =f.label :name
+  =f.text_field :name
+
+  %br
+
+  =f.label :body
+  =f.text_field :body
+
+  %br
+
+  =f.label :link
+  =f.text_field :link
+
+  %br
+
+  =f.label :format
+  =f.collection_select :format, Guide::FORMATS, :to_s, :humanize
+
+  =f.submit "Submit Guide"
+
