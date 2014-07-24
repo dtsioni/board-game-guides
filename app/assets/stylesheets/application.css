@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+.upvote_clicked{
+  color:orange;
+}
+.downvote_clicked{
+  color:blue;
+}

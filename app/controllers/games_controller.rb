@@ -21,9 +21,11 @@ class GamesController < ApplicationController
 	end
 
 	def requests
+		#new vote
+		@vote = Vote.new
 		@game = Game.find(params[:id])
 		@requests = @game.requests
-		@requests.sort_by{|a| a.score}
+		@requests = @requests.sort_by{|a| -a.score}
 	end	
 
 	def edit
@@ -65,6 +67,4 @@ class GamesController < ApplicationController
 		def game_params
 			params.require(:game).permit(:name, :description)
 		end
-
-
 end

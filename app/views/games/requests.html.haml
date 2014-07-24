@@ -18,13 +18,33 @@
         Status:
       %td
         Author:
+  %div{class:"requests"}
   -@requests.each do |request|
+
+    -if request.voted_up?(current_user)
+      - up_suffix = "_clicked"
+    -elsif request.voted_down?(current_user)
+      - down_suffix = "_clicked"
+    -else
+      -up_suffix = ""
     %tbody
       %tr
+        %td          
+          =form_for @vote, html:{id:"request_vote"}, remote: true do |f| 
+            =f.hidden_field :request_id, :value => request.id
+            =f.hidden_field :user_id, :value => current_user.id 
+            =f.hidden_field :vote_type, :value => "up"
+            =f.submit "Upvote", html:{id:"up_submit", class:"upvote#{up_suffix}"}
+                   
+          =form_for @vote, html:{id:"request_vote"}, remote: true do |f| 
+            =f.hidden_field :request_id, :value => request.id
+            =f.hidden_field :user_id, :value => current_user.id 
+            =f.hidden_field :vote_type, :value => "down"
+            =f.submit "Downvote", html:{id:"down_submit", class:"downvote#{down_suffix}"}
+                        
         %td
-          =link_to "Vote", new_vote_path
-        %td
-          =(request.count_votes("up") - request.count_votes("down"))
+          %div{class:"score"}
+            =request.score
         %td
           =request.title           
         %td
