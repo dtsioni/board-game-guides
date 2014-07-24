@@ -2,12 +2,9 @@ class VotesController < ApplicationController
   def new   
     @vote = Vote.new
     @requests = Request.select('id, title').to_a
-
   end
 
-  def create
-    #give list of requests to vote on
-    @requests = Request.select('id, title').to_a
+  def create    
     #make a new vote for the user based on params given
     @vote = current_user.votes.new(vote_params)
     #if upvote, remove previous downvotes
@@ -41,17 +38,18 @@ class VotesController < ApplicationController
       if @vote.save
         flash[:success] = "Vote successful"
         format.html{redirect_to @vote.request, notice: "Vote was successful."}
-        format.js{}
+        format.js
       else
         flash[:error] = "Vote not successful"
         format.html {render :new}
+        format.js
       end
     end
   end
 
   private
     def vote_params
-      params.require(:vote).permit(:vote_type, :request_id)
+      params.require(:vote).permit(:vote_type, :request_id, :user_id)
     end
 
 end

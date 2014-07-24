@@ -1,5 +1,3 @@
-
-
 %p
   Request for:
   =link_to @game.name, @game
@@ -8,7 +6,7 @@
     %tr
       -if can? :vote, request
         %td
-          Vote:
+          
       %td
         Score:
       %td
@@ -18,7 +16,7 @@
         Status:
       %td
         Author:
-  %div{class:"requests"}
+  %div{id:"requests_table"}
   -@requests.each do |request|
 
     -if request.voted_up?(current_user)
@@ -30,20 +28,20 @@
     %tbody
       %tr
         %td          
-          =form_for @vote, html:{id:"request_vote"}, remote: true do |f| 
+          =form_for @vote, html:{class:"request_vote"}, remote: true do |f| 
             =f.hidden_field :request_id, :value => request.id
             =f.hidden_field :user_id, :value => current_user.id 
             =f.hidden_field :vote_type, :value => "up"
-            =f.submit "Upvote", html:{id:"up_submit", class:"upvote#{up_suffix}"}
+            =f.submit "^", html:{class:"up_submit", class:"upvote#{up_suffix}"}
                    
-          =form_for @vote, html:{id:"request_vote"}, remote: true do |f| 
+          =form_for @vote, html:{class:"request_vote"}, remote: true do |f| 
             =f.hidden_field :request_id, :value => request.id
             =f.hidden_field :user_id, :value => current_user.id 
             =f.hidden_field :vote_type, :value => "down"
-            =f.submit "Downvote", html:{id:"down_submit", class:"downvote#{down_suffix}"}
+            =f.submit "v", html:{class:"down_submit", class:"downvote#{down_suffix}"}
                         
         %td
-          %div{class:"score"}
+          %div{class:"score", id:"game_request_#{request.id}_score"}
             =request.score
         %td
           =request.title           
@@ -55,10 +53,5 @@
           -if can? :delete, request
             =link_to "Delete this request", request, method: :delete, data:{confirm:"Are you sure?"}
             %br    
-      %tr
-        %td
-          %br
-      %tr
-        %td
-          =request.body
+      
       
